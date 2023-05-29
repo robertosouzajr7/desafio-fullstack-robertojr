@@ -1,16 +1,40 @@
 import { schemaCreateContact } from "../../../services/Validation/createUser.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledFormRegisterContact } from "./styles";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   ContactContext,
   iContactRequest,
+  iContactResponse,
 } from "../../../contexts/contactContext";
 import { useForm } from "react-hook-form";
 
-export const FormUpdateContact = () => {
-  const { CreateContact, edit } = useContext(ContactContext);
-  const idClient = localStorage.getItem("idClient");
+export const FormUpdateContact = ({ id }: any) => {
+  console.log(id);
+  const {
+    CreateContact,
+    edit,
+    showModal,
+    contact,
+    setContact,
+    UpdateContacts,
+    listContact,
+  } = useContext(ContactContext);
+
+  /* const newContact = listContact.contact.filter((contact: iContactRequest) => {
+    return contact.client_id === id;
+  });
+  console.log(newContact);
+ */
+  /* const getContact = () => {
+    const newContact = listContact.contact.filter(
+      (contact: iContactRequest) => {
+        return contact.client_id === id;
+      }
+    );
+    console.log(newContact);
+  };
+  getContact(); */
 
   const {
     handleSubmit,
@@ -18,26 +42,41 @@ export const FormUpdateContact = () => {
     formState: { errors },
   } = useForm<iContactRequest>({ resolver: yupResolver(schemaCreateContact) });
 
+  useEffect(() => {
+    const getContact = () => {
+      const contanct = listContact.contact.filter(
+        (item: iContactResponse) => item.id === id
+      );
+      console.log(contanct);
+      setContact(contanct[0]);
+    };
+    getContact();
+  }, [id, listContact]);
+
+  const handleData = (data: any) => {
+    console.log(data);
+    UpdateContacts(data);
+  };
   return (
     <>
-      {edit ? (
+      {showModal === true ? (
         <StyledFormRegisterContact>
-          <form onSubmit={handleSubmit(CreateContact)}>
+          <form onSubmit={handleSubmit(handleData)}>
             <input
               type="text"
-              placeholder="Insira o nome"
+              placeholder={contact.name}
               {...register("name")}
             />
             {errors.name?.message}
             <input
               type="text"
-              placeholder="Insira o email"
+              placeholder={contact.email}
               {...register("email")}
             />
             {errors.email?.message}
             <input
               type="text"
-              placeholder="Insira o Telefone"
+              placeholder={contact.phone}
               {...register("phone")}
             />
             {errors.phone?.message}

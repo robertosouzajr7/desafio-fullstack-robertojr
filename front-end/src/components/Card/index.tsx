@@ -9,13 +9,22 @@ import { FormUpdateContact } from "../Form/UpdateContact";
 import { UserContext } from "../../contexts/userContext";
 
 export function CardContact() {
-  const { listContact, edit, setEdit, GetContactsById, DeleteContact } =
-    useContext(ContactContext);
+  const {
+    listContact,
+    edit,
+    setEdit,
+    GetContactsById,
+    UpdateContacts,
+    setShowModal,
+    showModal,
+    DeleteContact,
+  } = useContext(ContactContext);
   const { GetClientbyToken } = useContext(UserContext);
 
   const GetId = (id: string) => {
     console.log(id);
-    DeleteContact(id);
+    localStorage.setItem("idContact", id);
+    setShowModal(true);
   };
 
   return (
@@ -29,12 +38,17 @@ export function CardContact() {
                 <p>{data.phone}</p>
                 <p>{data.email}</p>
                 <div className="buttonEdit">
-                  <button>editar</button>
-                  <button onClick={() => GetId(data.id)}>deletar</button>
+                  <button onClick={() => GetId(data.id)}>editar</button>
+                  <button onClick={() => DeleteContact(data.id)}>
+                    deletar
+                  </button>
                 </div>
               </li>
             </StyledCardContact>
           ))}
+          {showModal === true ? (
+            <FormUpdateContact id={localStorage.getItem("idContact")} />
+          ) : null}
         </StyledUl>
       ) : null}
     </>

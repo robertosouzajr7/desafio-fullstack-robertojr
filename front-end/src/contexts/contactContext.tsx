@@ -43,10 +43,12 @@ interface iContactContext {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   GetAllContacts: () => void;
   GetContactsById: () => void;
-  UpdateContacts: (id: string) => void;
+  UpdateContacts: (data: iContactRequest) => void;
   showCard: boolean;
   setShowCard: React.Dispatch<React.SetStateAction<boolean>>;
   DeleteContact: (id: string) => void;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface iChildren {
@@ -67,6 +69,7 @@ function ContactProvider({ children }: iChildren) {
   );
   const [edit, setEdit] = useState(false);
   const [showCard, setShowCard] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
 
   const CreateContact = async (data: iContactRequest) => {
     const getToken = localStorage.getItem("token");
@@ -121,12 +124,14 @@ function ContactProvider({ children }: iChildren) {
     }
   };
 
-  const UpdateContacts = async (id: string) => {
+  const UpdateContacts = async (data: iContactRequest) => {
     try {
-      const contacts = await Api.patch(`/contacts/${id}`, {
+      const idcontact = localStorage.getItem("idContact");
+      const contacts = await Api.patch(`/contacts/${idcontact}`, data, {
         headers: { Authorization: `Bearer ${getToken}` },
       });
-      setListContact(contacts.data);
+      GetContactsById();
+      setShowModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -149,6 +154,8 @@ function ContactProvider({ children }: iChildren) {
         showCard,
         setShowCard,
         DeleteContact,
+        showModal,
+        setShowModal,
       }}
     >
       {children}
