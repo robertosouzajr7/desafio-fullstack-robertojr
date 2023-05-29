@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import { FormRegisterContact } from "../../components/Form/RegisterContact";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { FormUpdateContact } from "../../components/Form/UpdateContact";
 import {
   ContactContext,
   iListContactResponse,
@@ -10,8 +11,15 @@ import {
 import { CardContact } from "../../components/Card";
 function Dashboard() {
   const { user, GetClientbyToken } = useContext(UserContext);
-  const { GetContactsById, listContact, setListContact, showCard } =
-    useContext(ContactContext);
+  const {
+    GetContactsById,
+    listContact,
+    edit,
+    showModal,
+    UpdateContacts,
+    setListContact,
+    showCard,
+  } = useContext(ContactContext);
   useEffect(() => {
     console.log(user);
     GetClientbyToken();

@@ -1,30 +1,16 @@
 import { StyledCardContact, StyledUl } from "./style";
-import { useContext, useEffect } from "react";
-import {
-  ContactContext,
-  iContactResponse,
-} from "../../contexts/contactContext";
-import { FormRegisterContact } from "../Form/RegisterContact";
+import { useContext } from "react";
+import { ContactContext } from "../../contexts/contactContext";
 import { FormUpdateContact } from "../Form/UpdateContact";
-import { UserContext } from "../../contexts/userContext";
 
 export function CardContact() {
-  const {
-    listContact,
-    edit,
-    setEdit,
-    GetContactsById,
-    UpdateContacts,
-    setShowModal,
-    showModal,
-    DeleteContact,
-  } = useContext(ContactContext);
-  const { GetClientbyToken } = useContext(UserContext);
+  const { listContact, setShowModal, showModal, DeleteContact } =
+    useContext(ContactContext);
 
   const GetId = (id: string) => {
-    console.log(id);
     localStorage.setItem("idContact", id);
     setShowModal(true);
+    <FormUpdateContact id={localStorage.getItem("idContact")} />;
   };
 
   return (

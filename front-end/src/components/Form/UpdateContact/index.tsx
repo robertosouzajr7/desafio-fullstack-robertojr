@@ -1,7 +1,7 @@
 import { schemaCreateContact } from "../../../services/Validation/createUser.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledFormRegisterContact } from "./styles";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   ContactContext,
   iContactRequest,
@@ -10,31 +10,8 @@ import {
 import { useForm } from "react-hook-form";
 
 export const FormUpdateContact = ({ id }: any) => {
-  console.log(id);
-  const {
-    CreateContact,
-    edit,
-    showModal,
-    contact,
-    setContact,
-    UpdateContacts,
-    listContact,
-  } = useContext(ContactContext);
-
-  /* const newContact = listContact.contact.filter((contact: iContactRequest) => {
-    return contact.client_id === id;
-  });
-  console.log(newContact);
- */
-  /* const getContact = () => {
-    const newContact = listContact.contact.filter(
-      (contact: iContactRequest) => {
-        return contact.client_id === id;
-      }
-    );
-    console.log(newContact);
-  };
-  getContact(); */
+  const { showModal, contact, setContact, UpdateContacts, listContact } =
+    useContext(ContactContext);
 
   const {
     handleSubmit,
@@ -47,14 +24,12 @@ export const FormUpdateContact = ({ id }: any) => {
       const contanct = listContact.contact.filter(
         (item: iContactResponse) => item.id === id
       );
-      console.log(contanct);
       setContact(contanct[0]);
     };
     getContact();
   }, [id, listContact]);
 
   const handleData = (data: any) => {
-    console.log(data);
     UpdateContacts(data);
   };
   return (
@@ -80,7 +55,7 @@ export const FormUpdateContact = ({ id }: any) => {
               {...register("phone")}
             />
             {errors.phone?.message}
-            <button type="submit">Cadastrar</button>
+            <button type="submit">Atualizar</button>
           </form>
         </StyledFormRegisterContact>
       ) : null}

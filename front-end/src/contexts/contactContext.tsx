@@ -1,10 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import Api from "../services/api";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
-import { stringify } from "querystring";
 import { toast } from "react-hot-toast";
 
 export interface iContactRequest {
@@ -79,7 +75,6 @@ function ContactProvider({ children }: iChildren) {
     })
       .then((res) => {
         setContact(res.data);
-        console.log(res.data);
         toast.success("Contato criado com sucesso!");
       })
       .catch((error) => console.log(error));
@@ -103,7 +98,6 @@ function ContactProvider({ children }: iChildren) {
       const contacts = await Api.get(`/contacts/clients/${idClient}`, {
         headers: { Authorization: `Bearer ${validToken}` },
       });
-      console.log(contacts.data);
       setShowCard(true);
       setListContact(contacts.data);
     } catch (error) {
@@ -117,7 +111,7 @@ function ContactProvider({ children }: iChildren) {
       const contacts = await Api.delete(`/contacts/${id}`, {
         headers: { Authorization: `Bearer ${validToken}` },
       });
-      console.log(contacts.data);
+      toast.success("Contato deletado com sucesso!");
       GetContactsById();
     } catch (error) {
       console.log(error);
@@ -132,6 +126,7 @@ function ContactProvider({ children }: iChildren) {
       });
       GetContactsById();
       setShowModal(false);
+      toast.success("Contato atualizado com sucesso!");
     } catch (error) {
       console.log(error);
     }

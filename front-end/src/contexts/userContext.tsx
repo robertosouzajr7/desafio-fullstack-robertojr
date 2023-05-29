@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import Api from "../services/api";
 import { NavigateFunction, useNavigate, useRoutes } from "react-router-dom";
-
+import { toast } from "react-hot-toast";
 interface iFormLoginUser {
   email: string;
   password: string;
@@ -60,6 +60,7 @@ function UserProvider({ children }: iChildren) {
       if (user.data) {
         routes(`/login`);
       }
+      toast.success("Cadastro criado com sucesso!");
       return user.data;
     } catch (error) {
       console.log(error);
@@ -73,6 +74,7 @@ function UserProvider({ children }: iChildren) {
       localStorage.setItem("token", gettoken.data);
       GetClientbyToken();
       routes(`/dashboard`);
+      toast.success("Login realizado com sucesso!");
       return gettoken.data;
     } catch (error) {
       console.log(error);
@@ -102,11 +104,12 @@ function UserProvider({ children }: iChildren) {
         },
       })
         .then((response) => {
-          console.log(response.data);
           setUser(response.data);
           localStorage.setItem("idClient", user.id);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          toast.error(err.message);
+        });
     } else {
       routes(`/login`);
     }

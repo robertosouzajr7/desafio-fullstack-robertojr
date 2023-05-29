@@ -2,16 +2,17 @@ import styled from "styled-components";
 
 export const StyledFormRegisterContact = styled.div`
   display: flex;
+  position: absolute;
   flex-direction: column;
   align-items: center;
+  align-content: center;
+  justify-content: center;
   gap: 10px;
 
   form {
-    position: absolute;
-    text-align: left;
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 400px;
     color: black;
     gap: 10px;
     border-radius: 10px;
@@ -34,7 +35,6 @@ export const StyledFormRegisterContact = styled.div`
       border-radius: 10px;
       font-size: 16px;
       text-align: center;
-      width: 40%;
       color: white;
       padding: 10px;
       box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px,

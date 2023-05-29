@@ -7,15 +7,13 @@ import { ContactContext } from "../../../contexts/contactContext";
 import { FormUpdateContact } from "../../../components/Form/UpdateContact";
 export function MyContactsPage() {
   const { GetClientbyToken } = useContext(UserContext);
-  const { GetContactsById, showModal, setShowModal } =
-    useContext(ContactContext);
+  const { GetContactsById, showModal } = useContext(ContactContext);
 
   useEffect(() => {
     GetClientbyToken();
     GetContactsById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const id = localStorage.getItem("idContact");
 
   return (
     <>
