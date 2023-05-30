@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const MainStyled = styled.main`
   background: #667db6; /* fallback for old browsers */
+  padding: 10px;
   background: -webkit-linear-gradient(
     to right,
     #667db6,
@@ -28,6 +29,7 @@ export const MainStyled = styled.main`
   section {
     align-items: center;
     justify-content: flex-end;
+    padding: 10px;
   }
 
   figure {

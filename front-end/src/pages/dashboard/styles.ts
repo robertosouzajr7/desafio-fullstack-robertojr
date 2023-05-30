@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const StyledDashboard = styled.main`
   display: flex;
-  padding-left: 15px;
-  padding-right: 15px;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  padding: 15px;
   gap: 5px;
   background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
   .btnAllContacts {
@@ -18,12 +17,12 @@ export const StyledDashboard = styled.main`
     border-radius: 10px;
     font-size: 16px;
     text-align: center;
-    justify-content: right;
+    justify-content: center;
+    justify-items: center;
+    width: auto;
     color: white;
     padding: 10px;
-    margin-top: 5rem;
-    margin-right: 15rem;
-    margin-bottom: 10%;
+    margin-top: 15px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
       rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
       rgba(0, 0, 0, 0.07) 0px 16px 16px;

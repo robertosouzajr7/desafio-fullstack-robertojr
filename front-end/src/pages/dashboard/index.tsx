@@ -41,15 +41,12 @@ function Dashboard() {
           <br /> você deve preencher os campos abaixo
         </h2>
         <FormRegisterContact />
+        <button onClick={() => GetContactsById()} className="btnAllContacts">
+          Ver todos os Contatos
+        </button>
+        {showCard === true ? <CardContact /> : null}
       </StyledDashboard>
-      <StyledFooter>
-        <div>
-          <button onClick={() => GetContactsById()} className="btnAllContacts">
-            Ver todos os Contatos
-          </button>
-          {showCard === true ? <CardContact /> : null}
-        </div>
-      </StyledFooter>
+      <StyledFooter></StyledFooter>
     </>
   );
 }

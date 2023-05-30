@@ -16,14 +16,11 @@ export function MyContactsPage() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <StyledDashboard>
-        <h2>Meus Contatos</h2>
-        <CardContact />
-        <button>Cadastrar novo Usuário</button>
-        {showModal === true ? <FormUpdateContact /> : null}
-      </StyledDashboard>
-    </>
+    <StyledDashboard>
+      <h2>Meus Contatos</h2>
+      <CardContact />
+      <button>Cadastrar novo Usuário</button>
+      {showModal === true ? <FormUpdateContact /> : null}
+    </StyledDashboard>
   );
 }

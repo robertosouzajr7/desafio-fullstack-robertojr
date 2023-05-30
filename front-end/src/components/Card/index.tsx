@@ -2,6 +2,7 @@ import { StyledCardContact, StyledUl } from "./style";
 import { useContext } from "react";
 import { ContactContext } from "../../contexts/contactContext";
 import { FormUpdateContact } from "../Form/UpdateContact";
+import { MdEmail } from "react-icons/md";
 
 export function CardContact() {
   const { listContact, setShowModal, showModal, DeleteContact } =
@@ -22,7 +23,10 @@ export function CardContact() {
               <li key={data.id}>
                 <h3>{data.name}</h3>
                 <p>{data.phone}</p>
-                <p>{data.email}</p>
+                <p>
+                  <MdEmail />
+                  {data.email}
+                </p>
                 <div className="buttonEdit">
                   <button onClick={() => GetId(data.id)}>editar</button>
                   <button onClick={() => DeleteContact(data.id)}>

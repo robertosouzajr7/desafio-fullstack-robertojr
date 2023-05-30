@@ -5,18 +5,23 @@ export const StyledFormRegisterContact = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  max-width: 600px;
+  width: 100%;
 
   form {
     text-align: left;
     display: flex;
     flex-direction: column;
-    width: 400px;
+    min-width: 200px;
+    max-width: 600px;
+    width: 100%;
     color: black;
     gap: 10px;
     border-radius: 10px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
     margin-top: 20px;
+    margin: 10px;
     padding: 25px;
     input {
       border-radius: 10px;
@@ -33,7 +38,6 @@ export const StyledFormRegisterContact = styled.div`
       border-radius: 10px;
       font-size: 16px;
       text-align: center;
-      width: 40%;
       color: white;
       padding: 10px;
       box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px,

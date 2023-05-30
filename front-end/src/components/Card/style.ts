@@ -2,47 +2,85 @@ import styled from "styled-components";
 
 export const StyledCardContact = styled.div`
   text-align: left;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  width: 250px;
   color: black;
   gap: 10px;
   border-radius: 10px;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  //box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
-  margin-top: 20px;
-  padding: 25px;
+  padding: 10px;
+  height: 50px;
+  border: 1px solid black;
 
-  .buttonEdit {
-    margin: 5px;
-    flex-direction: row;
-    button {
-      background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      text-align: left;
-      color: white;
-      padding: 10px;
-      margin: 15px;
-      box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px,
-        rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px,
-        rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
-      :hover {
-        background: black;
-      }
-    }
+  @media (max-width: 780px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
   }
 `;
 
 export const StyledUl = styled.ul`
-  width: 100%;
-  margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+
+  @media (max-width: 780px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-around;
+    justify-items: space-around;
+    padding: 10px;
+    width: 600px;
+    border-radius: 4px;
+
+    .buttonEdit {
+      margin: 5px;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      display: flex;
+      flex-direction: row;
+      button {
+        background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        text-align: left;
+        color: white;
+        padding: 10px;
+        margin: 15px;
+        :hover {
+          background: black;
+        }
+      }
+    }
+
+    @media (max-width: 780px) {
+      display: flex;
+      flex-direction: column;
+      width: auto;
+    }
+
+    h3 {
+      display: flex;
+    }
+    p {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+    }
+  }
 `;

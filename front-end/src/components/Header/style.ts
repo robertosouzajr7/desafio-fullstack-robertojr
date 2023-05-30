@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
   display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
   padding: 10px;
   padding-left: 15px;
   padding-right: 25px;
   justify-content: space-around;
-  font-size: 20px;
+  font-size: 19px;
   color: white;
   background: #667db6; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -28,6 +31,18 @@ export const StyledHeader = styled.header`
 
   div {
     display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 50%;
+    }
+    h2 {
+      font-size: 16px;
+    }
   }
 
   nav {
@@ -36,9 +51,11 @@ export const StyledHeader = styled.header`
 
     ul {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
       gap: 15px;
       text-decoration: none;
+      align-items: center;
 
       li {
         list-style-type: none;
@@ -48,7 +65,7 @@ export const StyledHeader = styled.header`
           text-decoration: none;
           font-weight: bold;
           color: white;
-          font-size: 30px;
+          font-size: 19px;
           gap: 15px;
         }
       }
