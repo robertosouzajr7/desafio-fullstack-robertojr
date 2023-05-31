@@ -73,8 +73,8 @@ function UserProvider({ children }: iChildren) {
       setToken(gettoken.data);
       localStorage.setItem("token", gettoken.data);
       GetClientbyToken();
-      routes(`/dashboard`);
       toast.success("Login realizado com sucesso!");
+      routes(`/dashboard`);
       return gettoken.data;
     } catch (error) {
       console.log(error);

@@ -2,7 +2,12 @@ import styled from "styled-components";
 
 export const StyledFormRegisterContact = styled.div`
   display: flex;
+  width: 100vw;
+  height: 1000px;
   position: absolute;
+  background-color: #00146f8a;
+  top: -100px;
+  z-index: 2;
   flex-direction: column;
   align-items: center;
   align-content: center;
@@ -11,6 +16,7 @@ export const StyledFormRegisterContact = styled.div`
 
   form {
     position: relative;
+    width: 400px;
     display: flex;
     flex-direction: column;
     color: black;
@@ -20,6 +26,23 @@ export const StyledFormRegisterContact = styled.div`
     background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
     margin-top: 20px;
     padding: 25px;
+
+    svg.btnClose {
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      right: -14px;
+      top: -18px;
+      z-index: 2;
+      cursor: pointer;
+      size: 2rem;
+      color: #fff;
+
+      &:hover {
+        color: #fff;
+        transform: scale(1.1);
+      }
+    }
     input {
       border-radius: 10px;
       height: 30px;

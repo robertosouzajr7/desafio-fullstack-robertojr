@@ -59,7 +59,8 @@ export const StyledHeader = styled.header`
 
       li {
         list-style-type: none;
-        align-items: center;
+        align-items: flex-end;
+        display: flex;
 
         a {
           text-decoration: none;

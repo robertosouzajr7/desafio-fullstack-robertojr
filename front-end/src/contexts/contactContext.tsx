@@ -67,6 +67,7 @@ function ContactProvider({ children }: iChildren) {
   const [showCard, setShowCard] = useState<boolean>(false);
   const [showModal, setShowModal] = useState(false);
 
+  console.log(listContact.contact);
   const CreateContact = async (data: iContactRequest) => {
     const getToken = localStorage.getItem("token");
     console.log(getToken);
@@ -99,6 +100,13 @@ function ContactProvider({ children }: iChildren) {
         headers: { Authorization: `Bearer ${validToken}` },
       });
       setShowCard(true);
+
+      const { contact }: iListContactResponse = contacts.data;
+      if (contact.length <= 0) {
+        toast.error("não existen contatos cadastrados");
+      }
+      contact.map((cont: iContactResponse) => console.log(cont));
+
       setListContact(contacts.data);
     } catch (error) {
       console.log(error);

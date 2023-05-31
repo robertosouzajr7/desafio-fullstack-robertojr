@@ -2,6 +2,7 @@ import { schemaCreateContact } from "../../../services/Validation/createUser.val
 import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledFormRegisterContact } from "./styles";
 import { useContext, useEffect } from "react";
+import { AiFillCloseCircle } from "react-icons/ai";
 import {
   ContactContext,
   iContactRequest,
@@ -10,8 +11,14 @@ import {
 import { useForm } from "react-hook-form";
 
 export const FormUpdateContact = ({ id }: any) => {
-  const { showModal, contact, setContact, UpdateContacts, listContact } =
-    useContext(ContactContext);
+  const {
+    showModal,
+    setShowModal,
+    contact,
+    setContact,
+    UpdateContacts,
+    listContact,
+  } = useContext(ContactContext);
 
   const {
     handleSubmit,
@@ -37,6 +44,11 @@ export const FormUpdateContact = ({ id }: any) => {
       {showModal === true ? (
         <StyledFormRegisterContact>
           <form onSubmit={handleSubmit(handleData)}>
+            <AiFillCloseCircle
+              className="btnClose"
+              size={30}
+              onClick={() => setShowModal(false)}
+            />
             <input
               type="text"
               placeholder={contact.name}

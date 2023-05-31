@@ -27,6 +27,7 @@ export const StyledFormRegisterContact = styled.div`
       border-radius: 10px;
       height: 30px;
       border: none;
+      padding-left: 15px;
       ::placeholder {
         padding: 15px;
       }

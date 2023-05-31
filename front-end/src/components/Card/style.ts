@@ -76,11 +76,15 @@ export const StyledUl = styled.ul`
 
     h3 {
       display: flex;
+      align-items: flex-end;
+      padding: 5px;
+      gap: 5px;
     }
     p {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       padding: 5px;
+      gap: 5px;
     }
   }
 `;
