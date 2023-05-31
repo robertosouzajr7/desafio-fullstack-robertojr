@@ -8,11 +8,11 @@ function Header() {
   const { routes, user } = useContext(UserContext);
   const [nome, setNome] = useState("");
 
-  useEffect(() => {
+  /* useEffect(() => {
     setNome(user.name);
     const nomeUser = nome[0].toUpperCase() + nome.slice(1);
     setNome(nomeUser);
-  }, [user]);
+  }, []); */
 
   const exit = () => {
     localStorage.removeItem("token");
@@ -26,7 +26,7 @@ function Header() {
       </div>
       <nav>
         <ul>
-          <p>{nome || null}, seja bem vindo!</p>
+          <p>seja bem vindo!</p>
           <li>
             <a href="#" onClick={exit}>
               <CgLogOff size={30} style={{ cursor: "pointer" }} />
