@@ -1,10 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import Api from "../services/api";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
-import { stringify } from "querystring";
 import { toast } from "react-hot-toast";
 
 export interface iContactRequest {
@@ -43,10 +39,12 @@ interface iContactContext {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   GetAllContacts: () => void;
   GetContactsById: () => void;
-  UpdateContacts: (id: string) => void;
+  UpdateContacts: (data: iContactRequest) => void;
   showCard: boolean;
   setShowCard: React.Dispatch<React.SetStateAction<boolean>>;
   DeleteContact: (id: string) => void;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface iChildren {
@@ -67,7 +65,9 @@ function ContactProvider({ children }: iChildren) {
   );
   const [edit, setEdit] = useState(false);
   const [showCard, setShowCard] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
 
+  console.log(listContact.contact);
   const CreateContact = async (data: iContactRequest) => {
     const getToken = localStorage.getItem("token");
     console.log(getToken);
@@ -76,7 +76,6 @@ function ContactProvider({ children }: iChildren) {
     })
       .then((res) => {
         setContact(res.data);
-        console.log(res.data);
         toast.success("Contato criado com sucesso!");
       })
       .catch((error) => console.log(error));
@@ -100,8 +99,14 @@ function ContactProvider({ children }: iChildren) {
       const contacts = await Api.get(`/contacts/clients/${idClient}`, {
         headers: { Authorization: `Bearer ${validToken}` },
       });
-      console.log(contacts.data);
       setShowCard(true);
+
+      const { contact }: iListContactResponse = contacts.data;
+      if (contact.length <= 0) {
+        toast.error("não existen contatos cadastrados");
+      }
+      contact.map((cont: iContactResponse) => console.log(cont));
+
       setListContact(contacts.data);
     } catch (error) {
       console.log(error);
@@ -114,19 +119,22 @@ function ContactProvider({ children }: iChildren) {
       const contacts = await Api.delete(`/contacts/${id}`, {
         headers: { Authorization: `Bearer ${validToken}` },
       });
-      console.log(contacts.data);
+      toast.success("Contato deletado com sucesso!");
       GetContactsById();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const UpdateContacts = async (id: string) => {
+  const UpdateContacts = async (data: iContactRequest) => {
     try {
-      const contacts = await Api.patch(`/contacts/${id}`, {
+      const idcontact = localStorage.getItem("idContact");
+      const contacts = await Api.patch(`/contacts/${idcontact}`, data, {
         headers: { Authorization: `Bearer ${getToken}` },
       });
-      setListContact(contacts.data);
+      GetContactsById();
+      setShowModal(false);
+      toast.success("Contato atualizado com sucesso!");
     } catch (error) {
       console.log(error);
     }
@@ -149,6 +157,8 @@ function ContactProvider({ children }: iChildren) {
         showCard,
         setShowCard,
         DeleteContact,
+        showModal,
+        setShowModal,
       }}
     >
       {children}
