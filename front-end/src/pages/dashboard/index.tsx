@@ -86,7 +86,11 @@ function Dashboard() {
       {showModalUpdate ? <FormUpdateClient /> : null}
       {showModalDelete ? <DeleteClient /> : null}
 
-      <StyledFooter></StyledFooter>
+      <StyledFooter>
+        <div id="app" data-root="/path/to/documentation">
+          <p>Desenvolvido por Roberto Jr</p>
+        </div>
+      </StyledFooter>
     </>
   );
 }
