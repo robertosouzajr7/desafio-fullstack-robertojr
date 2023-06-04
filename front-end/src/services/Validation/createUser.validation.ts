@@ -25,3 +25,9 @@ export const schemaCreateContact = yup.object().shape({
   notation: yup.string(),
   urlFoto: yup.string(),
 });
+
+export const schemaUpdateClient = yup.object().shape({
+  name: yup.string(),
+  phone: yup.string(),
+  email: yup.string().email(),
+});

@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 
 export const FormRegisterContact = () => {
   const { CreateContact } = useContext(ContactContext);
-  const idClient = localStorage.getItem("idClient");
 
   const {
     handleSubmit,

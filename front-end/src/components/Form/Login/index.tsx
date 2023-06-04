@@ -23,7 +23,11 @@ export const FormLoginUser = () => {
         <h2>Login</h2>
         <input type="text" placeholder="seu email" {...register("email")} />
         {errors.email?.message}
-        <input type="text" placeholder="sua sennha" {...register("password")} />
+        <input
+          type="password"
+          placeholder="sua sennha"
+          {...register("password")}
+        />
         {errors.password?.message}
         <button type="submit">Enviar</button>
       </form>

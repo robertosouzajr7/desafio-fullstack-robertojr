@@ -1,18 +1,13 @@
 import { StyledHeader } from "./style";
 import logo from "../../assets/logo-ico.png";
-import { UserContext, iChildren } from "../../contexts/userContext";
-import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../contexts/userContext";
+import { useContext } from "react";
 import { CgLogOff } from "react-icons/cg";
+import { VscAccount } from "react-icons/vsc";
 
 function Header() {
-  const { routes, user } = useContext(UserContext);
-  const [nome, setNome] = useState("");
-
-  /* useEffect(() => {
-    setNome(user.name);
-    const nomeUser = nome[0].toUpperCase() + nome.slice(1);
-    setNome(nomeUser);
-  }, []); */
+  const { routes, showAccountModal, setShowAccountModal } =
+    useContext(UserContext);
 
   const exit = () => {
     localStorage.removeItem("token");
@@ -29,9 +24,16 @@ function Header() {
           <p>seja bem vindo!</p>
           <li>
             <a href="#" onClick={exit}>
-              <CgLogOff size={30} style={{ cursor: "pointer" }} />
-              Sair
+              <CgLogOff size={40} style={{ cursor: "pointer" }} title="Sair" />
             </a>
+          </li>
+          <li>
+            <VscAccount
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowAccountModal(!showAccountModal)}
+              size={30}
+              title="Minha Conta"
+            ></VscAccount>
           </li>
         </ul>
       </nav>
