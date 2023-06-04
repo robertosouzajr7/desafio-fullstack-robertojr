@@ -43,7 +43,6 @@ export const StyledUl = styled.ul`
     justify-content: space-around;
     justify-items: space-around;
     padding: 10px;
-    width: 600px;
     border-radius: 4px;
 
     .buttonEdit {

@@ -10,7 +10,7 @@ import { RxAvatar } from "react-icons/rx";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 
 export function CardContact() {
-  const { listContact, setShowModal, showModal, DeleteContact } =
+  const { listContact, setShowModal, DeleteContact } =
     useContext(ContactContext);
 
   const GetId = (id: string) => {
@@ -40,17 +40,16 @@ export function CardContact() {
                   {data.email}
                 </p>
                 <div className="buttonEdit">
-                  <button onClick={() => GetId(data.id)}>editar</button>
-                  <button onClick={() => DeleteContact(data.id)}>
+                  <button type="button" onClick={() => GetId(data.id)}>
+                    editar
+                  </button>
+                  <button type="button" onClick={() => DeleteContact(data.id)}>
                     deletar
                   </button>
                 </div>
               </li>
             </StyledCardContact>
           ))}
-          {/* {showModal === true ? (
-            <FormUpdateContact id={localStorage.getItem("idContact")} />
-          ) : null} */}
         </StyledUl>
       ) : null}
     </>

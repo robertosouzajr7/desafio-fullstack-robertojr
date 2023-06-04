@@ -9,8 +9,17 @@ import {
   iListContactResponse,
 } from "../../contexts/contactContext";
 import { CardContact } from "../../components/Card";
+import { FormUpdateClient } from "../../components/Form/UpdateClient";
+import { DeleteClient } from "../../components/Form/DeleteClient";
+import Account from "../../components/Account";
 function Dashboard() {
-  const { user, GetClientbyToken } = useContext(UserContext);
+  const {
+    user,
+    GetClientbyToken,
+    showAccountModal,
+    showModalUpdate,
+    showModalDelete,
+  } = useContext(UserContext);
   const {
     GetContactsById,
     listContact,
@@ -73,6 +82,10 @@ function Dashboard() {
       {showModal ? (
         <FormUpdateContact id={localStorage.getItem("idContact")} />
       ) : null}
+      {showAccountModal === true ? <Account /> : null}
+      {showModalUpdate ? <FormUpdateClient /> : null}
+      {showModalDelete ? <DeleteClient /> : null}
+
       <StyledFooter></StyledFooter>
     </>
   );

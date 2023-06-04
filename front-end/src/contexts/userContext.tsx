@@ -33,9 +33,15 @@ interface iUserContext {
   setToken: React.Dispatch<React.SetStateAction<string>>;
   routes: NavigateFunction;
   ListClients: () => void;
-  UpdateClientbyId: (id: string) => void;
+  UpdateClientbyId: (data: iFormRegisterUser, id: string) => void;
   DeleteClientbyId: (id: string) => void;
   GetClientbyToken: () => void;
+  showModalUpdate: boolean;
+  setShowModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  showModalDelete: boolean;
+  setShowModalDelete: React.Dispatch<React.SetStateAction<boolean>>;
+  showAccountModal: boolean;
+  setShowAccountModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface iChildren {
@@ -52,7 +58,9 @@ function UserProvider({ children }: iChildren) {
   localStorage.setItem("idClient", user.id);
   const client_id = localStorage.getItem("idClient");
   const routes = useNavigate();
-
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showAccountModal, setShowAccountModal] = useState(false);
   const RegisterUser = async (data: iFormRegisterUser) => {
     try {
       const user = await Api.post(`/clients/`, data);
@@ -115,15 +123,17 @@ function UserProvider({ children }: iChildren) {
     }
   };
 
-  const UpdateClientbyId = async (id: string) => {
-    await Api.patch(`/clients/${id}`, {
+  const UpdateClientbyId = async (data: iFormRegisterUser, id: string) => {
+    await Api.patch(`/clients/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((response) => {
         setUser(response.data);
+        toast.success("Contato atualizado com sucesso!");
+        setShowModalUpdate(false);
       })
       .catch((err) => console.log(err));
   };
@@ -132,11 +142,14 @@ function UserProvider({ children }: iChildren) {
     await Api.delete(`/clients/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((response) => {
         setUser(response.data);
+        toast.success("conta excluída com sucesso!");
+        localStorage.clear();
+        routes(`/`);
       })
       .catch((err) => console.log(err));
   };
@@ -156,6 +169,12 @@ function UserProvider({ children }: iChildren) {
         setToken,
         routes,
         GetClientbyToken,
+        showModalUpdate,
+        setShowModalUpdate,
+        showModalDelete,
+        setShowModalDelete,
+        showAccountModal,
+        setShowAccountModal,
       }}
     >
       {children}
