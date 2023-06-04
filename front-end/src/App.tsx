@@ -9,7 +9,7 @@ import LoginPage from "./pages/login";
 import { Toaster } from "react-hot-toast";
 function App() {
   return (
-    <div className="App">
+    <div className="App" id="app" data-root="/path/to/documentation">
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<LoginPage />} />
