@@ -4,10 +4,7 @@ import { FormRegisterContact } from "../../components/Form/RegisterContact";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { FormUpdateContact } from "../../components/Form/UpdateContact";
-import {
-  ContactContext,
-  iListContactResponse,
-} from "../../contexts/contactContext";
+import { ContactContext } from "../../contexts/contactContext";
 import { CardContact } from "../../components/Card";
 import { FormUpdateClient } from "../../components/Form/UpdateClient";
 import { DeleteClient } from "../../components/Form/DeleteClient";
@@ -20,32 +17,13 @@ function Dashboard() {
     showModalUpdate,
     showModalDelete,
   } = useContext(UserContext);
-  const {
-    GetContactsById,
-    listContact,
-    edit,
-    showModal,
-    UpdateContacts,
-    setShowCard,
-    setListContact,
-    showCard,
-  } = useContext(ContactContext);
+  const { GetContactsById, showModal, setShowCard, showCard } =
+    useContext(ContactContext);
   const [showButton, setShowButton] = useState(false);
-  const [showButton2, setShowButton2] = useState(false);
   useEffect(() => {
     GetClientbyToken();
     GetContactsById();
-
-    /*  if (listContact.contact.length > 0) {
-      setShowButton2(true);
-    }
- */
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const deletar = () => {
-    setListContact(listContact);
-  };
 
   return (
     <>
@@ -66,7 +44,7 @@ function Dashboard() {
             >
               Ver todos os Contatos
             </button>
-            {showButton /* || listContact.contact.length > 0 */ ? (
+            {showButton ? (
               <button
                 className="btnAllContacts"
                 onClick={() => setShowCard(false)}
