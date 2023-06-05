@@ -21,7 +21,6 @@ import {
   ensureEmailMIddleware,
   ensureExistsUser,
 } from "../middlewares/users.Middlewares";
-
 const useRouter = Router();
 //"security": [{ "bearerAuth": {} }],
 //Login de Usuario
