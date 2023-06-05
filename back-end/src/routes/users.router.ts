@@ -23,7 +23,7 @@ import {
 } from "../middlewares/users.Middlewares";
 
 const useRouter = Router();
-
+//"security": [{ "bearerAuth": {} }],
 //Login de Usuario
 useRouter.post("/login", ensureExistsUser, LoginClientController);
 

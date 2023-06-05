@@ -1,0 +1,416 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api My Contacts",
+    "description": "Entrega m6  - desafio fusstack ",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/clients": {
+      "post": {
+        "description": "Rota para criar usuário",
+        "tags": ["Create Client"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type:": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Jhon",
+                  "email": "jhon@example.com",
+                  "password": "12345678",
+                  "phone": "123456789"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created with sucess!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "404": {
+            "description": "data is Invalid!"
+          }
+        }
+      },
+      "get": {
+        "description": "Rota para listar todos os usuários cadastrados",
+        "tags": ["List all Clients"],
+        "responses": {
+          "200": {
+            "description": "Lista de usuários registrados!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "401": {
+            "description": "data is Invalid!"
+          }
+        }
+      }
+    },
+
+    "/clients/{id}": {
+      "patch": {
+        "security": [{ "bearerAuth": [] }],
+        "description": "Rota para editar o usuário",
+        "tags": ["Update Client"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type:": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Jhon",
+                  "email": "jhon@example.com",
+                  "password": "12345678",
+                  "phone": "123456789"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated with sucess!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "404": {
+            "description": "data is Invalid!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      },
+      "get": {
+        "description": "Rota para pesquisar um usuário pelo id, precisa de autenticação",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Get Client by Id"],
+        "responses": {
+          "200": {
+            "description": "Lista de usuários registrados!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "401": {
+            "description": "data is Invalid!"
+          }
+        }
+      },
+      "delete": {
+        "security": [{ "bearerAuth": [] }],
+        "description": "Rota para deletar o usuário",
+        "tags": ["Deletar Client"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted with sucess!"
+          },
+          "400": {
+            "description": "User not exists!"
+          },
+          "404": {
+            "description": "data is Invalid!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      }
+    },
+
+    "/client": {
+      "get": {
+        "description": "Rota para listar o usuário logado e autenticado",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Get Client By token"],
+        "responses": {
+          "200": {
+            "description": "Listar usuário registrado!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      }
+    },
+
+    "/login": {
+      "post": {
+        "description": "Rota de login do usuário",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "jhon@example.com",
+                  "password": "12345678"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Login efetuado com sucesso"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "404": {
+            "description": "dados invalidos"
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "post": {
+        "security": [{ "bearerAuth": [] }],
+        "description": "Rota para criar novo contato",
+        "tags": ["Create Contact"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type:": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Jhon",
+                  "email": "jhon@example.com",
+                  "password": "12345678",
+                  "phone": "123456789"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact created with sucess!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "404": {
+            "description": "data is Invalid!"
+          }
+        }
+      },
+      "get": {
+        "security": [{ "bearerAuth": [] }],
+        "description": "Rota para listar todos os contatos do usuário",
+        "tags": ["List Contacts by users"],
+        "responses": {
+          "200": {
+            "description": "Lista de usuários cadastrados!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "401": {
+            "description": "data is Invalid!"
+          }
+        }
+      }
+    },
+
+    "/contacts/{id}": {
+      "patch": {
+        "security": [{ "bearerAuth": [] }],
+        "description": "Rota para editar o contato",
+        "tags": ["Update Contact"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type:": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Jhon",
+                  "email": "jhon@example.com",
+                  "password": "12345678",
+                  "phone": "123456789"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contato updated with sucess!"
+          },
+          "400": {
+            "description": "Email already exists"
+          },
+          "404": {
+            "description": "data is Invalid!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      },
+      "get": {
+        "description": "Rota para pesquisar um contato pelo id, precisa de autenticação",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Get Contact by Id"],
+        "responses": {
+          "200": {
+            "description": "Contato encontrado!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      },
+      "delete": {
+        "security": [{ "bearerAuth": [] }],
+        "description": "Rota para deletar o contato",
+        "tags": ["Delete Contact"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Contato deleted with sucess!"
+          },
+          "400": {
+            "description": "contato not exists!"
+          },
+          "404": {
+            "description": "data is Invalid!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      }
+    },
+
+    "/contacts/clients/{id}": {
+      "get": {
+        "description": "Rota para listar o todos os contatos do usuário logado e autenticado",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Get Contacts By Client id"],
+        "responses": {
+          "200": {
+            "description": "Listar contatos encontrados!"
+          },
+          "401": {
+            "description": "Unauthorized!"
+          }
+        }
+      }
+    }
+  }
+}
