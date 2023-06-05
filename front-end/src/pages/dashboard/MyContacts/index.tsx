@@ -20,12 +20,6 @@ export function MyContactsPage() {
 
   return (
     <StyledDashboard>
-      {/* {showModal === true ? (
-        <div className="divModal">
-          {" "}
-          <FormUpdateContact />
-        </div>
-      ) : null} */}
       <h2>Meus Contatos</h2>
       <CardContact />
       <button>Cadastrar novo Usuário</button>
